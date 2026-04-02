@@ -1,280 +1,149 @@
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SH Project</title>
-
-<style>
+<title>IPL Ticket Booking</title><style>
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fb;
+    font-family: Arial;
+    margin:0;
+    background:#f2f2f2;
 }
 
-header {
-    background: #1e293b;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 20px;
+/* HEADER */
+.header {
+    background:#e11d2e;
+    color:white;
+    padding:20px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
 }
 
-.container {
-    display: flex;
-    height: calc(100vh - 60px);
+.header h2 { margin:5px 0; }
+
+/* SECTION */
+.section {
+    padding:15px;
 }
 
-.sidebar {
-    width: 220px;
-    background: #0f172a;
-    color: white;
-    padding: 20px;
+.title {
+    font-weight:bold;
+    margin:15px 0;
+    color:#555;
 }
 
-.sidebar button {
-    width: 100%;
-    margin: 8px 0;
-    padding: 10px;
-    border: none;
-    background: #2563eb;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.main {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
+/* CARD */
 .card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
-input, select, textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 6px 0;
+.left {
+    border-left:5px solid green;
+    padding-left:10px;
 }
 
-.task {
-    padding: 12px;
-    border-radius: 6px;
-    margin-top: 10px;
-    background: white;
-    border-left: 6px solid #3b82f6;
-}
+.premium { border-left-color:orange; }
+.vip { border-left-color:red; }
 
-.high { border-left-color: #ef4444; }
-.medium { border-left-color: #f59e0b; }
-.low { border-left-color: #3b82f6; }
-
-.done {
-    text-decoration: line-through;
-    opacity: 0.6;
+.price {
+    color:#e11d2e;
+    font-weight:bold;
+    font-size:18px;
 }
 
 .btn {
-    padding: 5px 10px;
-    border: none;
-    margin-top: 5px;
-    cursor: pointer;
-    border-radius: 4px;
+    background:#e11d2e;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:20px;
+    cursor:pointer;
 }
 
-.green { background: #22c55e; color: white; }
-.red { background: #ef4444; color: white; }
-.yellow { background: #eab308; }
-
-.auth {
-    max-width: 300px;
-    margin: 100px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-}
-</style>
-</head>
-
-<body>
-
-<header>SH Project - Productivity App</header>
-
-<!-- LOGIN -->
-<div id="auth" class="auth">
-    <h3>Login / Signup</h3>
-    <input id="user" placeholder="Username">
-    <button onclick="login()">Enter</button>
-</div>
-
-<!-- APP -->
-<div id="app" style="display:none;">
-<div class="container">
-
-<div class="sidebar">
-    <h3>Menu</h3>
-    <button onclick="setFilter('all')">All</button>
-    <button onclick="setFilter('todo')">To Do</button>
-    <button onclick="setFilter('in-progress')">In Progress</button>
-    <button onclick="setFilter('done')">Done</button>
-    <button onclick="logout()">Logout</button>
-</div>
-
-<div class="main">
-
-<div class="card">
-    <h3>Add Task</h3>
-    <input id="title" placeholder="Task title">
-    <input id="date" type="date">
-    <select id="priority">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-    </select>
-    <textarea id="notes" placeholder="Notes"></textarea>
-    <button class="btn green" onclick="addTask()">Add Task</button>
-</div>
-
-<input id="search" placeholder="Search..." oninput="render()">
-
-<div id="tasks"></div>
-
-</div>
-</div>
-</div>
-
-<script>
-let user = null;
-let tasks = [];
-let filter = "all";
-
-function login() {
-    user = document.getElementById("user").value;
-    if (!user) return alert("Enter username");
-
-    localStorage.setItem("user", user);
-    load();
-    showApp();
+/* POPUP */
+.popup {
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:white;
+    padding:20px;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    display:none;
 }
 
-function logout() {
-    localStorage.clear();
-    location.reload();
+.popup input {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+</style></head><body><div class="header">
+    <h3>Kolkata Knight Riders vs Sunrisers Hyderabad</h3>
+    <p>📅 2 April 2026 | ⏰ 7:30 PM</p>
+    <p>📍 Eden Gardens, Kolkata</p>
+</div><div class="section"><div class="title">LOWER STANDS</div><div class="card">
+    <div class="left">
+        <b>Block B/C/D</b><br>
+        <span class="price">₹750 - ₹1200</span>
+    </div>
+    <button class="btn" onclick="buy('Block B/C/D')">Buy</button>
+</div><div class="card">
+    <div class="left">
+        <b>High Court End</b><br>
+        <span class="price">₹1200 - ₹1850</span>
+    </div>
+    <button class="btn" onclick="buy('High Court End')">Buy</button>
+</div><div class="title">PREMIUM</div><div class="card">
+    <div class="left premium">
+        <b>Club House</b><br>
+        <span class="price">₹2400 - ₹3500</span>
+    </div>
+    <button class="btn" onclick="buy('Club House')">Buy</button>
+</div><div class="card">
+    <div class="left premium">
+        <b>Pavilion Gallery</b><br>
+        <span class="price">₹3500 - ₹4800</span>
+    </div>
+    <button class="btn" onclick="buy('Pavilion Gallery')">Buy</button>
+</div><div class="title">VIP</div><div class="card">
+    <div class="left vip">
+        <b>VIP Box</b><br>
+        <span class="price">₹6000 - ₹7500</span>
+    </div>
+    <button class="btn" onclick="buy('VIP Box')">Buy</button>
+</div></div><!-- POPUP --><div id="popup" class="popup">
+    <h3 id="seatName"></h3>
+    <input id="name" placeholder="Your Name">
+    <input id="qty" type="number" placeholder="Tickets">
+    <button class="btn" onclick="confirmBooking()">Confirm</button>
+</div><script>
+let selectedSeat = "";
+
+function buy(seat) {
+    selectedSeat = seat;
+    document.getElementById("seatName").innerText = "Booking: " + seat;
+    document.getElementById("popup").style.display = "block";
 }
 
-function showApp() {
-    document.getElementById("auth").style.display = "none";
-    document.getElementById("app").style.display = "block";
-}
+function confirmBooking() {
+    const name = document.getElementById("name").value;
+    const qty = document.getElementById("qty").value;
 
-function load() {
-    const data = localStorage.getItem("tasks_" + user);
-    tasks = data ? JSON.parse(data) : [];
-}
-
-function save() {
-    localStorage.setItem("tasks_" + user, JSON.stringify(tasks));
-}
-
-function addTask() {
-    const title = document.getElementById("title").value;
-    if (!title) return;
-
-    tasks.push({
-        id: Date.now(),
-        title,
-        date: document.getElementById("date").value,
-        priority: document.getElementById("priority").value,
-        notes: document.getElementById("notes").value,
-        status: "todo"
-    });
-
-    save();
-    render();
-}
-
-function deleteTask(id) {
-    tasks = tasks.filter(t => t.id !== id);
-    save();
-    render();
-}
-
-function changeStatus(id) {
-    tasks = tasks.map(t => {
-        if (t.id === id) {
-            if (t.status === "todo") t.status = "in-progress";
-            else if (t.status === "in-progress") t.status = "done";
-        }
-        return t;
-    });
-    save();
-    render();
-}
-
-function editTask(id) {
-    const newTitle = prompt("Edit task:");
-    if (!newTitle) return;
-
-    tasks = tasks.map(t => {
-        if (t.id === id) t.title = newTitle;
-        return t;
-    });
-
-    save();
-    render();
-}
-
-function setFilter(f) {
-    filter = f;
-    render();
-}
-
-function render() {
-    const list = document.getElementById("tasks");
-    const search = document.getElementById("search").value.toLowerCase();
-
-    list.innerHTML = "";
-
-    tasks
-    .filter(t => filter === "all" || t.status === filter)
-    .filter(t => t.title.toLowerCase().includes(search))
-    .forEach(t => {
-
-        const div = document.createElement("div");
-        div.className = `task ${t.priority} ${t.status==="done"?"done":""}`;
-
-        div.innerHTML = `
-            <b>${t.title}</b><br>
-             ${t.date || "No date"}<br>
-             ${t.priority}<br>
-             ${t.notes || "No notes"}<br>
-             ${t.status}<br>
-
-            <button class="btn yellow" onclick="changeStatus(${t.id})">Next</button>
-            <button class="btn green" onclick="editTask(${t.id})">Edit</button>
-            <button class="btn red" onclick="deleteTask(${t.id})">Delete</button>
-        `;
-
-        list.appendChild(div);
-    });
-}
-
-window.onload = () => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-        user = savedUser;
-        showApp();
-        load();
-        render();
+    if (!name || !qty) {
+        alert("Fill details");
+        return;
     }
-};
-</script>
 
-</body>
+    alert("Booked " + qty + " tickets for " + selectedSeat);
+    document.getElementById("popup").style.display = "none";
+}
+</script></body>
 </html>
