@@ -1,59 +1,24 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Book IPL 2026 Tickets — TheBookMyShow</title>
-    <meta name="description" content="Book IPL 2026 tickets for all 10 teams and stadiums. Best prices with free merchandise. Secure your seats now!">
-    <meta name="author" content="Lovable" />
-
-    <!-- TODO: Update og:title to match your application name -->
-    
-
-
-
-    
-    <meta property="og:type" content="website" />
-    <meta property="og:the" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d49c3c14-cc15-4b3e-85ad-e3f8b8946632/id-preview-a23d2fb5--4e633274-4374-4c6b-824a-aaea299f0294.lovable.app-1775070353135.png">
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d49c3c14-cc15-4b3e-85ad-e3f8b8946632/id-preview-a23d2fb5--4e633274-4374-4c6b-824a-aaea299f0294.lovable.app-1775070353135.png">
-    <meta property="og:title" content="Book IPL 2026 Tickets — TheBookMyShow">
-  <meta name="twitter:title" content="Book IPL 2026 Tickets — TheBookMyShow">
-  <meta property="og:description" content="Book IPL 2026 tickets for all 10 teams and stadiums. Best prices with free merchandise. Secure your seats now!">
-  <meta name="twitter:description" content="Book IPL 2026 tickets for all 10 teams and stadiums. Best prices with free merchandise. Secure your seats now!">
-</head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SH Project - Task Manager</title>
+<title>SH Project</title>
 
 <style>
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    background: #f4f6f9;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7fb;
 }
 
 header {
-    background: #2c3e50;
+    background: #1e293b;
     color: white;
     padding: 15px;
     text-align: center;
+    font-size: 20px;
 }
 
 .container {
@@ -63,23 +28,20 @@ header {
 
 .sidebar {
     width: 220px;
-    background: #34495e;
+    background: #0f172a;
     color: white;
     padding: 20px;
 }
 
-.sidebar h2 {
-    font-size: 18px;
-}
-
 .sidebar button {
     width: 100%;
-    margin-top: 10px;
+    margin: 8px 0;
     padding: 10px;
     border: none;
-    background: #1abc9c;
+    background: #2563eb;
     color: white;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .main {
@@ -88,199 +50,228 @@ header {
     overflow-y: auto;
 }
 
-input, select {
-    padding: 8px;
-    margin: 5px 0;
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+input, select, textarea {
     width: 100%;
+    padding: 8px;
+    margin: 6px 0;
 }
 
 .task {
-    background: white;
-    padding: 15px;
+    padding: 12px;
+    border-radius: 6px;
     margin-top: 10px;
-    border-left: 5px solid #3498db;
+    background: white;
+    border-left: 6px solid #3b82f6;
 }
 
-.task.done {
-    border-left-color: #2ecc71;
+.high { border-left-color: #ef4444; }
+.medium { border-left-color: #f59e0b; }
+.low { border-left-color: #3b82f6; }
+
+.done {
     text-decoration: line-through;
+    opacity: 0.6;
 }
 
-.task.high { border-left-color: #e74c3c; }
-.task.medium { border-left-color: #f39c12; }
-.task.low { border-left-color: #3498db; }
-
-button {
-    margin-top: 5px;
-    padding: 6px 10px;
+.btn {
+    padding: 5px 10px;
     border: none;
+    margin-top: 5px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
-.delete { background: #e74c3c; color: white; }
-.complete { background: #2ecc71; color: white; }
+.green { background: #22c55e; color: white; }
+.red { background: #ef4444; color: white; }
+.yellow { background: #eab308; }
 
 .auth {
     max-width: 300px;
     margin: 100px auto;
     background: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 </style>
 </head>
 
 <body>
 
-<header>SH Project - Task Manager</header>
+<header>SH Project - Productivity App</header>
 
-<div id="authSection" class="auth">
-    <h3>Login</h3>
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login / Signup</button>
+<!-- LOGIN -->
+<div id="auth" class="auth">
+    <h3>Login / Signup</h3>
+    <input id="user" placeholder="Username">
+    <button onclick="login()">Enter</button>
 </div>
 
+<!-- APP -->
 <div id="app" style="display:none;">
-    <div class="container">
-        <div class="sidebar">
-            <h2>Menu</h2>
-            <button onclick="showAll()">All Tasks</button>
-            <button onclick="filterStatus('todo')">To Do</button>
-            <button onclick="filterStatus('in-progress')">In Progress</button>
-            <button onclick="filterStatus('done')">Done</button>
-            <button onclick="logout()">Logout</button>
-        </div>
+<div class="container">
 
-        <div class="main">
-            <h2>Tasks</h2>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <button onclick="setFilter('all')">All</button>
+    <button onclick="setFilter('todo')">To Do</button>
+    <button onclick="setFilter('in-progress')">In Progress</button>
+    <button onclick="setFilter('done')">Done</button>
+    <button onclick="logout()">Logout</button>
+</div>
 
-            <input id="taskTitle" placeholder="Task title">
-            <input id="taskDate" type="date">
-            <select id="taskPriority">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-            <button onclick="addTask()">Add Task</button>
+<div class="main">
 
-            <input id="search" placeholder="Search..." oninput="renderTasks()">
+<div class="card">
+    <h3>Add Task</h3>
+    <input id="title" placeholder="Task title">
+    <input id="date" type="date">
+    <select id="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+    <textarea id="notes" placeholder="Notes"></textarea>
+    <button class="btn green" onclick="addTask()">Add Task</button>
+</div>
 
-            <div id="taskList"></div>
-        </div>
-    </div>
+<input id="search" placeholder="Search..." oninput="render()">
+
+<div id="tasks"></div>
+
+</div>
+</div>
 </div>
 
 <script>
-let currentUser = null;
+let user = null;
 let tasks = [];
 let filter = "all";
 
 function login() {
-    const user = document.getElementById("username").value;
+    user = document.getElementById("user").value;
     if (!user) return alert("Enter username");
 
-    currentUser = user;
     localStorage.setItem("user", user);
-
-    loadTasks();
-
-    document.getElementById("authSection").style.display = "none";
-    document.getElementById("app").style.display = "block";
+    load();
+    showApp();
 }
 
 function logout() {
-    localStorage.removeItem("user");
+    localStorage.clear();
     location.reload();
 }
 
-function loadTasks() {
-    const saved = localStorage.getItem("tasks_" + currentUser);
-    tasks = saved ? JSON.parse(saved) : [];
-    renderTasks();
+function showApp() {
+    document.getElementById("auth").style.display = "none";
+    document.getElementById("app").style.display = "block";
 }
 
-function saveTasks() {
-    localStorage.setItem("tasks_" + currentUser, JSON.stringify(tasks));
+function load() {
+    const data = localStorage.getItem("tasks_" + user);
+    tasks = data ? JSON.parse(data) : [];
+}
+
+function save() {
+    localStorage.setItem("tasks_" + user, JSON.stringify(tasks));
 }
 
 function addTask() {
-    const title = document.getElementById("taskTitle").value;
-    const date = document.getElementById("taskDate").value;
-    const priority = document.getElementById("taskPriority").value;
-
+    const title = document.getElementById("title").value;
     if (!title) return;
 
     tasks.push({
         id: Date.now(),
         title,
-        date,
-        priority,
+        date: document.getElementById("date").value,
+        priority: document.getElementById("priority").value,
+        notes: document.getElementById("notes").value,
         status: "todo"
     });
 
-    saveTasks();
-    renderTasks();
+    save();
+    render();
 }
 
 function deleteTask(id) {
     tasks = tasks.filter(t => t.id !== id);
-    saveTasks();
-    renderTasks();
+    save();
+    render();
 }
 
-function completeTask(id) {
+function changeStatus(id) {
     tasks = tasks.map(t => {
-        if (t.id === id) t.status = "done";
+        if (t.id === id) {
+            if (t.status === "todo") t.status = "in-progress";
+            else if (t.status === "in-progress") t.status = "done";
+        }
         return t;
     });
-    saveTasks();
-    renderTasks();
+    save();
+    render();
 }
 
-function filterStatus(status) {
-    filter = status;
-    renderTasks();
+function editTask(id) {
+    const newTitle = prompt("Edit task:");
+    if (!newTitle) return;
+
+    tasks = tasks.map(t => {
+        if (t.id === id) t.title = newTitle;
+        return t;
+    });
+
+    save();
+    render();
 }
 
-function showAll() {
-    filter = "all";
-    renderTasks();
+function setFilter(f) {
+    filter = f;
+    render();
 }
 
-function renderTasks() {
-    const list = document.getElementById("taskList");
+function render() {
+    const list = document.getElementById("tasks");
     const search = document.getElementById("search").value.toLowerCase();
 
     list.innerHTML = "";
 
     tasks
-        .filter(t => filter === "all" || t.status === filter)
-        .filter(t => t.title.toLowerCase().includes(search))
-        .forEach(t => {
-            const div = document.createElement("div");
-            div.className = `task ${t.status === "done" ? "done" : ""} ${t.priority}`;
+    .filter(t => filter === "all" || t.status === filter)
+    .filter(t => t.title.toLowerCase().includes(search))
+    .forEach(t => {
 
-            div.innerHTML = `
-                <strong>${t.title}</strong><br>
-                Due: ${t.date || "N/A"}<br>
-                Priority: ${t.priority}<br>
-                Status: ${t.status}<br>
-                <button class="complete" onclick="completeTask(${t.id})">Done</button>
-                <button class="delete" onclick="deleteTask(${t.id})">Delete</button>
-            `;
+        const div = document.createElement("div");
+        div.className = `task ${t.priority} ${t.status==="done"?"done":""}`;
 
-            list.appendChild(div);
-        });
+        div.innerHTML = `
+            <b>${t.title}</b><br>
+             ${t.date || "No date"}<br>
+             ${t.priority}<br>
+             ${t.notes || "No notes"}<br>
+             ${t.status}<br>
+
+            <button class="btn yellow" onclick="changeStatus(${t.id})">Next</button>
+            <button class="btn green" onclick="editTask(${t.id})">Edit</button>
+            <button class="btn red" onclick="deleteTask(${t.id})">Delete</button>
+        `;
+
+        list.appendChild(div);
+    });
 }
 
 window.onload = () => {
-    const user = localStorage.getItem("user");
-    if (user) {
-        currentUser = user;
-        document.getElementById("authSection").style.display = "none";
-        document.getElementById("app").style.display = "block";
-        loadTasks();
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+        user = savedUser;
+        showApp();
+        load();
+        render();
     }
 };
 </script>
