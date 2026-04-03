@@ -1,156 +1,274 @@
 
-
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPL Ticket Booking</title><style>
-body {
-    font-family: Arial;
-    margin:0;
-    background:#f2f2f2;
+<title>IPL Ticket Flow</title>
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui;
+  background:#f2f2f2;
 }
+
+/* COMMON */
+.container{
+  max-width:380px;
+  margin:20px auto;
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+.hidden{display:none;}
+
+h2{margin:0 0 10px;}
 
 /* HEADER */
-.header {
-    background:#e11d2e;
-    color:white;
-    padding:20px;
-    border-bottom-left-radius:20px;
-    border-bottom-right-radius:20px;
+.red-box{
+  background:#e50914;
+  color:#fff;
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:15px;
 }
 
-.header h2 { margin:5px 0; }
-
-/* SECTION */
-.section {
-    padding:15px;
+/* PRICE CARDS */
+.card{
+  background:#f7f7f7;
+  padding:15px;
+  border-radius:15px;
+  margin:10px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.title {
-    font-weight:bold;
-    margin:15px 0;
-    color:#555;
+.buy-btn{
+  background:#e50914;
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:25px;
 }
 
-/* CARD */
-.card {
-    background:white;
-    border-radius:15px;
-    padding:15px;
-    margin-bottom:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+/* SEATS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(11,1fr);
+  gap:8px;
+  margin:15px 0;
 }
 
-.left {
-    border-left:5px solid green;
-    padding-left:10px;
+.seat{
+  background:#eee;
+  padding:8px;
+  text-align:center;
+  border-radius:8px;
+  font-size:12px;
 }
 
-.premium { border-left-color:orange; }
-.vip { border-left-color:red; }
+.booked{background:#c7e8d0;}
+.selected{background:#e50914;color:#fff;}
 
-.price {
-    color:#e11d2e;
-    font-weight:bold;
-    font-size:18px;
+.btn{
+  width:100%;
+  padding:15px;
+  border-radius:30px;
+  border:none;
+  margin-top:10px;
 }
 
-.btn {
-    background:#e11d2e;
-    color:white;
-    border:none;
-    padding:10px 15px;
-    border-radius:20px;
-    cursor:pointer;
+.active{background:#e50914;color:#fff;}
+
+/* FORM */
+input,select{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  margin:10px 0;
 }
 
-/* POPUP */
-.popup {
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:white;
-    padding:20px;
-    border-top-left-radius:20px;
-    border-top-right-radius:20px;
-    display:none;
+.row{display:flex;gap:10px;}
+
+.total{
+  background:#eee;
+  padding:15px;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
 }
 
-.popup input {
-    width:100%;
-    padding:10px;
-    margin:10px 0;
+.pay{
+  background:#e50914;
+  color:#fff;
 }
-</style></head><body><div class="header">
-    <h3>Kolkata Knight Riders vs Sunrisers Hyderabad</h3>
-    <p> 2 April 2026 | 7:30 PM</p>
-    <p> Eden Gardens, Kolkata</p>
-</div><div class="section"><div class="title">LOWER STANDS</div><div class="card">
-    <div class="left">
-        <b>Block B/C/D</b><br>
-        <span class="price">₹750 - ₹1200</span>
-    </div>
-<a href="https://booking-details-page-the-book-my-show--in.pages.dev/" target="_self">
-  <button class="btn">Buy</button>
-</a>
-</div><div class="card">
-    <div class="left">
-        <b>High Court End</b><br>
-        <span class="price">₹1200 - ₹1850</span>
-    </div>
-<a href="https://booking-details-page-the-book-my-show--in.pages.dev/" target="_self">
-  <button class="btn">Buy</button>
-</a>
-</div><div class="title">PREMIUM</div><div class="card">
-    <div class="left premium">
-        <b>Club House</b><br>
-        <span class="price">₹2400 - ₹3500</span>
-    </div>
-<a href="https://booking-details-page-the-book-my-show--in.pages.dev/" target="_self">
-  <button class="btn">Buy</button>
-</a>
-</div><div class="card">
-    <div class="left premium">
-        <b>Pavilion Gallery</b><br>
-        <span class="price">₹3500 - ₹4800</span>
-    </div>
-<a href="https://booking-details-page-the-book-my-show--in.pages.dev/" target="_self">
-  <button class="btn">Buy</button>
-</a>
-</div><div class="title">VIP</div><div class="card">
-    <div class="left vip">
-        <b>VIP Box</b><br>
-        <span class="price">₹6000 - ₹7500</span>
-    </div>
-<a href="https://booking-details-page-the-book-my-show--in.pages.dev/" target="_self">
-  <button class="btn">Buy</button>
-</a>
-</div></div>
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 (PRICE) -->
+<div class="container" id="pricePage">
+  <div class="red-box">
+    <b>Hyderabad</b><br>
+    2 April 2026 | 7:30 PM<br>
+    Eden Gardens, Kolkata
+  </div>
+
+  <h3>LOWER STANDS</h3>
+
+  <div class="card">
+    Block B/C/D ₹750 - ₹1200
+    <button class="buy-btn" onclick="selectPrice(750,'Block B/C/D')">Buy</button>
+  </div>
+
+  <div class="card">
+    High Court End ₹1200 - ₹1850
+    <button class="buy-btn" onclick="selectPrice(1200,'High Court End')">Buy</button>
+  </div>
+
+  <h3>PREMIUM</h3>
+
+  <div class="card">
+    Club House ₹2400 - ₹3500
+    <button class="buy-btn" onclick="selectPrice(2400,'Club House')">Buy</button>
+  </div>
+
+  <div class="card">
+    Pavilion Gallery ₹3500 - ₹4800
+    <button class="buy-btn" onclick="selectPrice(3500,'Pavilion')">Buy</button>
+  </div>
+
+  <h3>VIP</h3>
+
+  <div class="card">
+    VIP Box ₹6000 - ₹18000
+    <button class="buy-btn" onclick="selectPrice(6000,'VIP Box')">Buy</button>
+  </div>
+</div>
+
+<!-- PAGE 2 (SEATS) -->
+<div class="container hidden" id="seatPage">
+  <h2>Select Your Seat ✕</h2>
+
+  <div class="grid" id="grid"></div>
+
+  <p id="msg" style="text-align:center;color:green">
+    Select seats to continue
+  </p>
+
+  <button id="seatBtn" class="btn">Continue</button>
+</div>
+
+<!-- PAGE 3 (BOOKING) -->
+<div class="container hidden" id="bookingPage">
+
+  <h2>Booking Details</h2>
+
+  <div class="card">
+    <b id="standName"></b><br>
+    ₹<span id="pricePer"></span> per ticket
+  </div>
+
+  <input placeholder="Full Name">
+  <input placeholder="Email">
+  <input placeholder="Phone">
+
+  <div class="row">
+    <input type="number" id="qty" value="1">
+    <select id="date">
+      <option>2 April 2026</option>
+      <option>5 April 2026</option>
+      <option>10 April 2026</option>
+      <option>15 April 2026</option>
+      <option>20 April 2026</option>
+      <option>25 April 2026</option>
+      <option>30 April 2026</option>
+      <option>5 May 2026</option>
+      <option>10 May 2026</option>
+    </select>
+  </div>
+
+  <div class="total">
+    Total ₹<span id="total">0</span>
+  </div>
+
+  <button class="btn pay" onclick="pay()">Proceed to Payment</button>
+</div>
+
 <script>
-let selectedSeat = "";
+let price = 0;
+let stand = "";
+let seats = 0;
 
-function buy(seat) {
-    selectedSeat = seat;
-    document.getElementById("seatName").innerText = "Booking: " + seat;
-    document.getElementById("popup").style.display = "block";
+/* SELECT PRICE */
+function selectPrice(p,s){
+  price = p;
+  stand = s;
+
+  document.getElementById("pricePage").classList.add("hidden");
+  document.getElementById("seatPage").classList.remove("hidden");
 }
 
-function confirmBooking() {
-    const name = document.getElementById("name").value;
-    const qty = document.getElementById("qty").value;
+/* SEATS */
+const grid = document.getElementById("grid");
 
-    if (!name || !qty) {
-        alert("Fill details");
-        return;
-    }
+for(let i=1;i<=55;i++){
+  let d=document.createElement("div");
+  d.className="seat";
+  d.innerText=(i%11)||11;
 
-    alert("Booked " + qty + " tickets for " + selectedSeat);
-    document.getElementById("popup").style.display = "none";
+  if([2,4,6,8,10].includes(d.innerText*1)){
+    d.classList.add("booked");
+  }
+
+  d.onclick=()=>{
+    if(d.classList.contains("booked")) return;
+
+    d.classList.toggle("selected");
+
+    seats=document.querySelectorAll(".selected").length;
+
+    document.getElementById("msg").innerText=
+      seats+" seat(s) selected";
+
+    document.getElementById("seatBtn").classList.add("active");
+  };
+
+  grid.appendChild(d);
 }
-</script></body>
+
+/* CONTINUE */
+document.getElementById("seatBtn").onclick=()=>{
+  if(seats===0) return;
+
+  document.getElementById("seatPage").classList.add("hidden");
+  document.getElementById("bookingPage").classList.remove("hidden");
+
+  document.getElementById("standName").innerText=stand;
+  document.getElementById("pricePer").innerText=price;
+
+  updateTotal();
+};
+
+/* TOTAL */
+document.getElementById("qty").oninput=updateTotal;
+
+function updateTotal(){
+  let q=document.getElementById("qty").value;
+  document.getElementById("total").innerText=q*price;
+}
+
+/* PAYMENT */
+function pay(){
+  window.location.href="https://payment-page-the-book-my-show-in.pages.dev/";
+}
+</script>
+
+</body>
 </html>
