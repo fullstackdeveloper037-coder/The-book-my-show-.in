@@ -24,9 +24,6 @@ body{
 }
 .hidden{display:none;}
 
-h2{margin:0 0 10px;}
-
-/* HEADER */
 .red-box{
   background:#e50914;
   color:#fff;
@@ -35,7 +32,7 @@ h2{margin:0 0 10px;}
   margin-bottom:15px;
 }
 
-/* PRICE CARDS */
+/* CARDS */
 .card{
   background:#f7f7f7;
   padding:15px;
@@ -70,7 +67,7 @@ h2{margin:0 0 10px;}
   font-size:12px;
 }
 
-.booked{background:#c7e8d0;}
+.booked{background:#b7d8c0;}
 .selected{background:#e50914;color:#fff;}
 
 .btn{
@@ -83,7 +80,6 @@ h2{margin:0 0 10px;}
 
 .active{background:#e50914;color:#fff;}
 
-/* FORM */
 input,select{
   width:100%;
   padding:14px;
@@ -112,7 +108,7 @@ input,select{
 
 <body>
 
-<!-- PAGE 1 (PRICE) -->
+<!-- PRICE PAGE -->
 <div class="container" id="pricePage">
   <div class="red-box">
     <b>Hyderabad</b><br>
@@ -147,12 +143,12 @@ input,select{
   <h3>VIP</h3>
 
   <div class="card">
-    VIP Box ₹6000 - ₹18000
+    VIP Box ₹6000 - ₹7500
     <button class="buy-btn" onclick="selectPrice(6000,'VIP Box')">Buy</button>
   </div>
 </div>
 
-<!-- PAGE 2 (SEATS) -->
+<!-- SEAT PAGE -->
 <div class="container hidden" id="seatPage">
   <h2>Select Your Seat ✕</h2>
 
@@ -165,7 +161,7 @@ input,select{
   <button id="seatBtn" class="btn">Continue</button>
 </div>
 
-<!-- PAGE 3 (BOOKING) -->
+<!-- BOOKING PAGE -->
 <div class="container hidden" id="bookingPage">
 
   <h2>Booking Details</h2>
@@ -180,17 +176,11 @@ input,select{
   <input placeholder="Phone">
 
   <div class="row">
-    <input type="number" id="qty" value="1">
-    <select id="date">
+    <input type="number" id="qty" value="1" min="1">
+    <select>
       <option>2 April 2026</option>
       <option>5 April 2026</option>
       <option>10 April 2026</option>
-      <option>15 April 2026</option>
-      <option>20 April 2026</option>
-      <option>25 April 2026</option>
-      <option>30 April 2026</option>
-      <option>5 May 2026</option>
-      <option>10 May 2026</option>
     </select>
   </div>
 
@@ -211,13 +201,11 @@ function selectPrice(p,s){
   price = p;
   stand = s;
 
-  document.getElementById("pricePage").classList.add("hidden");
-  document.getElementById("seatPage").classList.remove("hidden");
+  pricePage.classList.add("hidden");
+  seatPage.classList.remove("hidden");
 }
 
-/* SEATS */
-const grid = document.getElementById("grid");
-
+/* SEATS GRID */
 for(let i=1;i<=55;i++){
   let d=document.createElement("div");
   d.className="seat";
@@ -234,34 +222,44 @@ for(let i=1;i<=55;i++){
 
     seats=document.querySelectorAll(".selected").length;
 
-    document.getElementById("msg").innerText=
-      seats+" seat(s) selected";
+    msg.innerText = seats+" seat(s) selected";
 
-    document.getElementById("seatBtn").classList.add("active");
+    if(seats>0){
+      seatBtn.classList.add("active");
+      seatBtn.innerText = "Continue with "+seats+" ticket →";
+    }
   };
 
   grid.appendChild(d);
 }
 
 /* CONTINUE */
-document.getElementById("seatBtn").onclick=()=>{
+seatBtn.onclick=()=>{
   if(seats===0) return;
 
-  document.getElementById("seatPage").classList.add("hidden");
-  document.getElementById("bookingPage").classList.remove("hidden");
+  seatPage.classList.add("hidden");
+  bookingPage.classList.remove("hidden");
 
-  document.getElementById("standName").innerText=stand;
-  document.getElementById("pricePer").innerText=price;
+  standName.innerText = stand;
+  pricePer.innerText = price;
+
+  qty.value = seats; // auto fill from seats
 
   updateTotal();
 };
 
-/* TOTAL */
-document.getElementById("qty").oninput=updateTotal;
+/* PRICE INCREASE LOGIC */
+qty.oninput = updateTotal;
 
 function updateTotal(){
-  let q=document.getElementById("qty").value;
-  document.getElementById("total").innerText=q*price;
+  let q = Number(qty.value);
+  let dynamicPrice = price;
+
+  if(q>=3 && q<=4) dynamicPrice = price * 1.1;
+  else if(q>=5 && q<=6) dynamicPrice = price * 1.2;
+  else if(q>=7) dynamicPrice = price * 1.3;
+
+  total.innerText = Math.floor(dynamicPrice * q);
 }
 
 /* PAYMENT */
